@@ -1,12 +1,9 @@
-import com.sun.jdi.LongValue;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.Character.isDigit;
 
-public class Telephon {
+public class Telephone {
     private String brand;
     private Long my_number;
     private ArrayList<Long> remembered_numbers;
@@ -15,7 +12,7 @@ public class Telephon {
 
 
 
-    public Telephon(String brand) {
+    public Telephone(String brand) {
         Random random = new Random();
         this.brand = brand;
         this.my_number = 1000000000L + random.nextLong(9000000000L);;
@@ -24,7 +21,7 @@ public class Telephon {
         this.tariff = Math.round((0.1 + random.nextDouble() * 0.9) * 10.0) / 10.0;
     }
 
-    public Telephon(String brand, Long my_number) {
+    public Telephone(String brand, Long my_number) {
         Random random = new Random();
         this.brand = brand;
         this.my_number = my_number;
@@ -48,7 +45,7 @@ public class Telephon {
         return out_nub;
     }
 
-    public Telephon(String brand, String my_number) {
+    public Telephone(String brand, String my_number) {
         Random random = new Random();
         this.brand = brand;
         this.my_number = str_to_long(my_number);
@@ -57,7 +54,7 @@ public class Telephon {
         this.tariff = Math.round((0.1 + random.nextDouble() * 0.9) * 10.0) / 10.0;
     }
 
-    public Telephon(String brand, String my_number, ArrayList<Long> remembered_numbers, int count_calls, double tariff) {
+    public Telephone(String brand, String my_number, ArrayList<Long> remembered_numbers, int count_calls, double tariff) {
         this.brand = brand;
         this.my_number = str_to_long(my_number);
         this.remembered_numbers = remembered_numbers;
@@ -65,10 +62,61 @@ public class Telephon {
         this.tariff = tariff;
     }
 
-    public static void toCall(Telephon telephonToCall, Telephon telephonToanswer){
+    /*public static void toCall(Telephon telephonToCall, Telephon telephonToanswer){
         if (!telephonToCall.remembered_numbers.stream().equals(telephonToanswer.my_number)){
             telephonToCall.remembered_numbers.add(telephonToanswer.my_number);
         }
+    }*/
+
+
+    public void toCall(Telephone telephoneToCall) {
+        System.out.println(this.brand + " звонит на номер " + telephoneToCall.my_number);
+
+
+        /*telephonToCall.remembered_numbers.stream()
+                .filter(number -> number.equals(telephonToCall.my_number))
+                .findFirst()
+                .ifPresentOrElse(
+                        number -> {
+                            System.out.println("Номер " + number + " из списка запомненных номеров уже есть.");
+                        },
+                        () -> {
+                            telephonToCall.remembered_numbers.add(this.my_number);
+                            System.out.println("Номер " + telephonToCall.my_number + " добавлен в список запомненных номеров.");
+                        }
+                );*/
+
+
+        if (!this.remembered_numbers.contains(telephoneToCall.my_number)) {
+            this.remembered_numbers.add(telephoneToCall.my_number);
+            System.out.println("Номер " + telephoneToCall.my_number + " добавлен в список запомненных номеров.");
+        }
+        else {
+            System.out.println("Номер " + telephoneToCall.my_number + " из списка запомненных номеров уже есть.");
+        }
+
+
+        this.count_calls++;
+    }
+
+    public void toAnswer(Telephone telephoneToAnswer, int duration) {
+        System.out.println(this.brand + " отвечает на вызов от номера " + telephoneToAnswer.my_number);
+
+        if (!this.remembered_numbers.contains(telephoneToAnswer.my_number)) {
+            this.remembered_numbers.add(telephoneToAnswer.my_number);
+            System.out.println("Номер " + telephoneToAnswer.my_number + " добавлен в список запомненных номеров.");
+        }
+        else {
+            System.out.println("Номер " + telephoneToAnswer.my_number + " из списка запомненных номеров уже есть.");
+        }
+
+        // Увеличиваем количество вызовов
+        this.count_calls++;
+
+        // Вычисляем стоимость разговора
+        double callCost = duration * telephoneToAnswer.tariff;
+        System.out.println("Продолжительность разговора: " + duration + " минут.");
+        System.out.println("Стоимость разговора: " + callCost + " у.е.");
     }
 
     public String getBrand() {
