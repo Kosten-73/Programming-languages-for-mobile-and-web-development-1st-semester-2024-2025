@@ -2,25 +2,53 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// Класс моих функций
-class Function{
-    public  static <T> void print_arrayList(ArrayList<T> telephons){
-        for (T telephon:telephons){
+/**
+ * Класс {@code Function} содержит вспомогательные функции для работы с коллекциями.
+ */
+class Function {
+    /**
+     * Метод для вывода содержимого {@code ArrayList} в консоль.
+     *
+     * @param telephons Список телефонов, который нужно вывести.
+     * @param <T>       Тип данных в списке.
+     */
+    public static <T> void print_arrayList(ArrayList<T> telephons) {
+        for (T telephon : telephons) {
             System.out.println(telephon.toString());
         }
     }
 }
 
+/**
+ * Главный {@code Main} класс программы, содержащий метод {@code main}.
+ */
 public class Main {
+    
+    /**
+     * Конструктор по умолчанию для класса Main.
+     * Создает объект класса Main без каких-либо параметров.
+     */
+    public Main() {
+        // Конструктор по умолчанию
+    }
+
+    /**
+     * Точка входа программы, которая создает телефоны и выполняет действия с ними.
+     *
+     * @param args Аргументы командной строки (не используются в данном примере).
+     */
     public static void main(String[] args) {
+        // Создание списка телефонов
         ArrayList<Telephone> telephones = new ArrayList<>();
 
-        ArrayList<Long> remembered_numbers1 = new ArrayList<Long>();
+        // Заполнение списка запомненных номеров для одного из телефонов
+        ArrayList<Long> remembered_numbers1 = new ArrayList<>();
         remembered_numbers1.add(9341294283L);
         remembered_numbers1.add(9646215252L);
         remembered_numbers1.add(9526432337L);
         remembered_numbers1.add(9576435441L);
 
+        // Создание нескольких экземпляров телефонов и добавление их в список
         telephones.add(new Telephone("iphone XS", "(903)472-99-36"));
         telephones.add(new Telephone("iphone 15"));
         telephones.add(new Telephone("iphone 16 Pro Max", "(952)642-52-52", remembered_numbers1, 0, 0.1));
@@ -31,16 +59,17 @@ public class Main {
         telephones.add(new Telephone("Xiaomi Mi 11", "(947)123-45-67", new ArrayList<>(Arrays.asList(9526425252L, 9034729936L, 9646215252L)), 3, 0.4));
         telephones.add(new Telephone("Sony Xperia 1 III", 9125235312L));
         telephones.add(new Telephone("Huawei P40", "(908)123-45-78", new ArrayList<>(Arrays.asList(9034729936L, 9341294283L, 9234567890L, 9876543210L)), 1, 0.25));
-        telephones.add(new Telephone("Nokia 3310", "(800)555-35-35", new ArrayList<Long>(List.of(9034729936L)), 1, 0.15));
-        telephones.add(new Telephone("Motorola Razr", "(987)654-32-10", new ArrayList<Long>(Arrays.asList(5235231421L, 8494730074L, 9034729936L)), 2, 0.12));
+        telephones.add(new Telephone("Nokia 3310", "(800)555-35-35", new ArrayList<>(List.of(9034729936L)), 1, 0.15));
+        telephones.add(new Telephone("Motorola Razr", "(987)654-32-10", new ArrayList<>(Arrays.asList(5235231421L, 8494730074L, 9034729936L)), 2, 0.12));
 
-        telephones.get(0).toCall(telephones.get(1));
-        telephones.get(1).toAnswer(telephones.get(0), 5);
+        // Вызовы между телефонами
+        telephones.get(0).toCall(telephones.get(1));  // iphone XS звонит на iphone 15
+        telephones.get(1).toAnswer(telephones.get(0), 5);  // iphone 15 отвечает, вызов длится 5 минут
 
+        telephones.get(9).toCall(telephones.get(11));  // Huawei P40 звонит на Motorola Razr
+        telephones.get(11).toAnswer(telephones.get(9), 7);  // Motorola Razr отвечает, вызов длится 7 минут
 
-        telephones.get(9).toCall(telephones.get(11));
-        telephones.get(11).toAnswer(telephones.get(9), 7);
-
+        // Вывод всех телефонов на экран
         Function.print_arrayList(telephones);
     }
 }
