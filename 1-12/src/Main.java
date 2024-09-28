@@ -83,6 +83,11 @@ public class Main {
         // Чтение целого числа
         System.out.print("Введите ваш номер телефона: ");
         int number = scanner.nextInt();
+
+        // Добавление телефона в список введенный из консоли
         telephones.add(new Telephone(brand, String.valueOf(number)));
+
+        // Закрытие Scanner
+        scanner.close();
     }
 }
