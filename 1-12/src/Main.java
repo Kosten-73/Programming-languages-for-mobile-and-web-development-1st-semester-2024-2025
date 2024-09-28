@@ -53,7 +53,7 @@ public class Main {
         telephones.add(new Telephone("iphone XS", "(903)472-99-36"));
         telephones.add(new Telephone("iphone 15"));
         telephones.add(new Telephone("iphone 16 Pro Max", "(952)642-52-52", remembered_numbers1, 0, 0.1));
-        telephones.add(new Telephone("iphone 16 Plus", "(912)523-53-12", new ArrayList<>(Arrays.asList(5235231421L, 8494730074L, 1739572371L)), 0, 0.3));
+        telephones.add(new Telephone("iphone 16 Plus", "(912)523-53-12", new ArrayList<>(Arrays.asList(5235231421L, 8494730074L, 1739572371L, 5235252421L, 8494745124L, 5439572371L, 5235253511L, 8494730114L, 1739599991L,9325231421L, 8494957344L, 9563102371L)), 0, 0.3));
         telephones.add(new Telephone("Samsung Galaxy S21", "(945)567-34-22", new ArrayList<>(Arrays.asList(9034729936L, 8494730074L, 1739572371L)), 1, 0.5));
         telephones.add(new Telephone("Google Pixel 5", "(934)123-45-67"));
         telephones.add(new Telephone("OnePlus 9 Pro", "(920)213-45-78", new ArrayList<>(Arrays.asList(9034729936L, 9646215252L, 9341294283L)), 2, 0.2));
@@ -82,7 +82,7 @@ public class Main {
 
         // Чтение целого числа
         System.out.print("Введите ваш номер телефона: ");
-        int number = scanner.nextInt();
+        String number = scanner.nextLine();
 
         // Добавление телефона в список введенный из консоли
         telephones.add(new Telephone(brand, String.valueOf(number)));
