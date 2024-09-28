@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Класс {@code Function} содержит вспомогательные функции для работы с коллекциями.
@@ -71,5 +72,17 @@ public class Main {
 
         // Вывод всех телефонов на экран
         Function.print_arrayList(telephones);
+
+        // Создаем объект Scanner для чтения данных с консоли
+        Scanner scanner = new Scanner(System.in);
+
+        // Чтение строки
+        System.out.print("Введите модель телефона: ");
+        String brand = scanner.nextLine();
+
+        // Чтение целого числа
+        System.out.print("Введите ваш номер телефона: ");
+        int number = scanner.nextInt();
+        telephones.add(new Telephone(brand, String.valueOf(number)));
     }
 }
