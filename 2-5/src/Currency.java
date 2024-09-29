@@ -97,8 +97,8 @@ abstract class Currency {
      */
     @Override
     public String toString() {
-        return "Currency{" +
-                "amount=" + amount +
+        return "Валюта{" +
+                "количество=" + amount +
                 '}';
     }
 }
