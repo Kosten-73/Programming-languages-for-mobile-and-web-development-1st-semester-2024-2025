@@ -1,25 +1,44 @@
+/**
+ * Класс Euro наследует абстрактный класс Currency и представляет евро.
+ * Реализует метод для конвертации евро в рубли.
+ */
 public class Euro extends Currency {
+    // Константа для курса евро к рублю
     private static final double POUND_TO_RUBLES = 105.26;
 
+    /**
+     * Конструктор класса Euro с заданным количеством евро.
+     * @param amount количество евро.
+     */
     public Euro(double amount) {
-        super(amount);
-    }
-
-    public Euro() {
+        super(amount); // Вызывает конструктор базового класса Currency
     }
 
     /**
-     * @return Число типа {@code double}, стоимость в рублях
+     * Конструктор по умолчанию для класса Euro.
+     * Устанавливает начальную сумму в 0.
+     */
+    public Euro() {
+        // Конструктор без параметров (по умолчанию amount = 0)
+    }
+
+    /**
+     * Метод для конвертации евро в рубли.
+     * @return стоимость в рублях, рассчитанная на основе курса.
      */
     @Override
     public double toRubles() {
-        return amount * POUND_TO_RUBLES;
+        return amount * POUND_TO_RUBLES; // Перевод евро в рубли по текущему курсу
     }
 
+    /**
+     * Возвращает строковое представление объекта Euro.
+     * @return строка, описывающая объект Euro с текущим количеством.
+     */
     @Override
     public String toString() {
         return "Евро{" +
                 "количество=" + amount +
-                '}';
+                '}'; // Строковое представление объекта с указанием количества евро
     }
 }
