@@ -1,10 +1,25 @@
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+import static java.lang.Math.pow; // Импортируем метод pow из Math для возведения в степень
+import static java.lang.Math.sqrt; // Импортируем метод sqrt из Math для вычисления квадратного корня
 
+/**
+ * Класс, представляющий точку в двумерном пространстве.
+ */
 public class Point {
-    double x, y;
-    // Растояние между 2-мя точками
+    /** Координата x точки. */
+    double x;
+
+    /** Координата y точки. */
+    double y;
+
+    /**
+     * Вычисляет расстояние между данной точкой и другой точкой.
+     *
+     * @param p другая точка, с которой вычисляется расстояние
+     * @return расстояние между двумя точками
+     */
     double distance(Point p) {
+        // Используем формулу расстояния между двумя точками:
+        // d = √((x2 - x1)² + (y2 - y1)²)
         return sqrt(pow(x - p.x, 2) + pow(y - p.y, 2));
     }
 }

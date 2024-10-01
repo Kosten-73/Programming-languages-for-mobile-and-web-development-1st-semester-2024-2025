@@ -1,10 +1,21 @@
+/**
+ * Фабрика для создания фигур.
+ */
 public class FactoryShape {
-    public static Shape createShape(char cd){
+
+    /**
+     * Создает объект фигуры на основе переданного символа.
+     *
+     * @param cd символ, указывающий тип фигуры ('T' для треугольника, 'R' для прямоугольника)
+     * @return объект типа Shape, соответствующий переданному символу, или null, если символ не распознан
+     */
+    public static Shape createShape(char cd) {
+        // Используем switch для определения типа фигуры
         Shape sh = switch (cd) {
-            case 'T' -> new Triangle();
-            case 'R' -> new Rectangle();
-            default -> null;
+            case 'T' -> new Triangle(); // Если символ 'T', создаем треугольник
+            case 'R' -> new Rectangle(); // Если символ 'R', создаем прямоугольник
+            default -> null; // Для других символов возвращаем null
         };
-        return sh;
+        return sh; // Возвращаем созданный объект фигуры
     }
 }
