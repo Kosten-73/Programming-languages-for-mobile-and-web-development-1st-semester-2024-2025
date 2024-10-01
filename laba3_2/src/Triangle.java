@@ -23,6 +23,11 @@ public class Triangle extends Shape{
         double a = arc[0].distance(arc[1]);
         double b = arc[1].distance(arc[2]);
         double c = arc[2].distance(arc[0]);
+        // Проверка на то, является ли треугольник вырожденным (сумма двух сторон не больше третьей)
+        if (a + b <= c || a + c <= b || b + c <= a) {
+            return 0; // Вырожденный треугольник, площадь равна 0
+        }
+
         double p = (a + b + c) / 2;
         return sqrt(p * (p - a) * (p - b) * (p - c));
     }
