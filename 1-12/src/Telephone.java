@@ -20,6 +20,8 @@ public class Telephone {
     /** Тариф за минуту разговора. */
     private double tariff;
 
+    private Long number_to;
+
     /**
      * Конструктор класса {@code Telephone}, который инициализирует телефон с заданным брендом.
      * Генерируется случайный номер телефона и тариф.
@@ -123,6 +125,7 @@ public class Telephone {
             System.err.println("Произошла непредвиденная ошибка: " + e.getMessage());
         }
 
+        this.number_to = telephoneToCall.getMy_number();
         this.count_calls++;
     }
 
@@ -133,6 +136,7 @@ public class Telephone {
      * @param duration          Продолжительность вызова в минутах.
      */
     public void toAnswer(Telephone telephoneToAnswer, int duration) {
+        if (telephoneToAnswer.number_to == this.my_number){
         System.out.println(this.brand + " отвечает на вызов от номера " + telephoneToAnswer.my_number);
 
         if (!this.remembered_numbers.contains(telephoneToAnswer.my_number)) {
@@ -147,7 +151,23 @@ public class Telephone {
         double callCost = duration * telephoneToAnswer.tariff;
         System.out.println("Продолжительность разговора: " + duration + " минут.");
         System.out.println("Стоимость разговора: " + callCost + " у.е.");
+        telephoneToAnswer.number_to = null;
+        }
+        else {
+            System.out.println("С номера " + duration + " не было звонка");
+        }
+        }
+
+    public Long getNumber_to() {
+        return number_to;
     }
+
+    public void setNumber_to(Long number_to) {
+        this.number_to = number_to;
+    }
+
+
+
 
     /**
      * Возвращает название бренда телефона.

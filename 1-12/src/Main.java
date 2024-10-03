@@ -69,6 +69,7 @@ public class Main {
 
         telephones.get(9).toCall(telephones.get(11));  // Huawei P40 звонит на Motorola Razr
         telephones.get(11).toAnswer(telephones.get(9), 7);  // Motorola Razr отвечает, вызов длится 7 минут
+        telephones.get(11).toAnswer(telephones.get(1), 7);  // Motorola Razr отвечает, вызов длится 7 минут
 
         // Вывод всех телефонов на экран
         Function.print_arrayList(telephones);
@@ -76,7 +77,7 @@ public class Main {
         // Создаем объект Scanner для чтения данных с консоли
         Scanner scanner = new Scanner(System.in);
 
-        // Чтение строки
+        /*// Чтение строки
         System.out.print("Введите модель телефона: ");
         String brand = scanner.nextLine();
 
@@ -88,6 +89,74 @@ public class Main {
         telephones.add(new Telephone(brand, String.valueOf(number)));
 
         // Закрытие Scanner
-        scanner.close();
+        scanner.close();*/
+
+        while (true) {
+            System.out.println("Введите команду:");
+            System.out.println("1 - ввод данных");
+            System.out.println("2 - позвонить n - с какого номера m - куда позвонить");
+            System.out.println("3 - ответить n - с какого номера m - откуда звонок k - продолжительность");
+            System.out.println("4 - вывод последнего");
+            System.out.println("5 - выход");
+            String input = scanner.nextLine(); // считываем всю строку
+
+            // Проверка на пустой ввод
+            if (input.trim().isEmpty()) {
+                System.out.println("Ошибка: Ввод не может быть пустым. Попробуйте снова.");
+                continue; // возвращаемся к началу цикла
+            }
+
+            // Разбиение строки на части
+            String[] parts = input.split(" "); // разбиваем строку на части
+
+            int command;
+
+            try {
+                command = Integer.parseInt(parts[0]); // первая часть — это команда
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка: Введите корректную команду.");
+                continue;
+            }
+
+            switch (command) {
+                case 1:
+                    // Добавление элемента
+                    if (parts.length != 1) {
+                        System.out.println("Ошибка: Не указано значение для добавления.");
+                        continue;
+                    }
+                    try {
+                        parts = input.split(" ");
+                        // Чтение строки
+                        System.out.print("Введите модель телефона: ");
+                        String brand1 = scanner.nextLine();
+
+                        // Чтение целого числа
+                        System.out.print("Введите ваш номер телефона: ");
+                        String number1 = scanner.nextLine();
+                        long value = Long.parseLong(number1); // второе значение — это значение для добавления
+                        telephones.add(new Telephone(brand1, number1));
+                    } catch (NumberFormatException e) {
+                        System.out.println("Ошибка: Введите целое число для добавления.");
+                    }
+                    break;
+                case 2:
+                    telephones.get(Integer.parseInt(parts[1])).toCall(telephones.get(Integer.parseInt(parts[2])));
+                    break;
+                case 3:
+                    telephones.get(Integer.parseInt(parts[1])).toAnswer(telephones.get(Integer.parseInt(parts[2])), Integer.parseInt(parts[3]));  // iphone 15 отвечает, вызов длится 5 минут
+                    break;
+                case 4:
+                    System.out.println(telephones.get(telephones.size() - 1).toString());
+                    break;
+                case 5:
+                    // Выход из программы
+                    System.out.println("Выход из программы.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Неверная команда. Попробуйте снова.");
+            }
+        }
     }
 }
