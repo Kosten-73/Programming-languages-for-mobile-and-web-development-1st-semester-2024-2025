@@ -99,12 +99,15 @@ public class Triangle extends Shape {
         double d3 = direction(p1, p2, q1);
         double d4 = direction(p1, p2, q2);
 
+        // Пересечение отрезков проверяется с помощью знаков направлений:
         // Проверяем, пересекаются ли отрезки
         if (((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0)) &&
                 ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0))) {
             return true; // Отрезки пересекаются
         }
 
+        /*Если отрезки коллинеарны (совпадают по направлению), проверяется, находятся ли точки на одном отрезке
+        с помощью метода onSegment:*/
         // Проверяем коллинеарные случаи
         return (d1 == 0 && onSegment(q1, q2, p1)) ||
                 (d2 == 0 && onSegment(q1, q2, p2)) ||
@@ -121,7 +124,7 @@ public class Triangle extends Shape {
      * @return направление
      */
     private double direction(Point pi, Point pj, Point pk) {
-        return (pk.x - pi.x) * (pj.y - pi.y) - (pj.x - pi.x) * (pk.y - pi.y);
+        return (pk.x - pi.x) * (pj.y - pi.y) - (pj.x - pi.x) * (pk.y - pi.y); // направление
     }
 
     /**
