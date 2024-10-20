@@ -10,7 +10,7 @@ public class Container_1 implements ICont{
     @Override
     public void readFlights() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\korudenko\\IdeaProjects\\Programming-languages-for-mobile-and-web-development-1st-semester-2024-2025\\4_1\\src\\flights.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\korudenko\\IdeaProjects\\Programming-languages-for-mobile-and-web-development-1st-semester-2024-2025\\4_2\\src\\flights.txt"));
             String line;
             String[] substr;
             FlightShedule flight;
