@@ -1,80 +1,20 @@
 import java.util.*
 
-/**
- * Класс `Telephone` представляет телефон с возможностью совершения и принятия вызовов.
- * Телефон имеет параметры, такие как бренд, номер телефона, список запомненных номеров,
- * количество вызовов и тариф на звонки.
- */
+
 class Telephone {
-    /**
-     * Возвращает название бренда телефона.
-     *
-     * @return Бренд телефона.
-     */
-    /**
-     * Устанавливает название бренда телефона.
-     *
-     * @param brand Бренд телефона.
-     */
-    /** Бренд телефона.  */
+
     var brand: String
-    /**
-     * Возвращает номер телефона.
-     *
-     * @return Номер телефона.
-     */
-    /**
-     * Устанавливает номер телефона.
-     *
-     * @param my_number Номер телефона.
-     */
-    /** Личный номер телефона.  */
+
     var my_number: Long
-    /**
-     * Возвращает список запомненных номеров.
-     *
-     * @return Список запомненных номеров.
-     */
-    /**
-     * Устанавливает список запомненных номеров.
-     *
-     * @param remembered_numbers Список запомненных номеров.
-     */
-    /** Список запомненных номеров.  */
+
     var remembered_numbers: ArrayList<Long>
-    /**
-     * Возвращает количество вызовов.
-     *
-     * @return Количество вызовов.
-     */
-    /**
-     * Устанавливает количество вызовов.
-     *
-     * @param count_calls Количество вызовов.
-     */
-    /** Количество вызовов, совершенных с телефона.  */
+
     var count_calls: Int
-    /**
-     * Возвращает тариф за минуту разговора.
-     *
-     * @return Тариф за минуту.
-     */
-    /**
-     * Устанавливает тариф за минуту разговора.
-     *
-     * @param tariff Тариф за минуту разговора.
-     */
-    /** Тариф за минуту разговора.  */
+
     var tariff: Double
 
     private var number_to: Long? = null
 
-    /**
-     * Конструктор класса `Telephone`, который инициализирует телефон с заданным брендом.
-     * Генерируется случайный номер телефона и тариф.
-     *
-     * @param brand Название бренда телефона.
-     */
     constructor(brand: String) {
         val random = Random()
         this.brand = brand
@@ -84,12 +24,7 @@ class Telephone {
         this.tariff = Math.round((0.1 + random.nextDouble() * 0.9) * 10.0) / 10.0
     }
 
-    /**
-     * Конструктор класса `Telephone`, который инициализирует телефон с заданным брендом и номером.
-     *
-     * @param brand     Название бренда телефона.
-     * @param my_number Личный номер телефона.
-     */
+
     constructor(brand: String, my_number: Long) {
         val random = Random()
         this.brand = brand
@@ -99,12 +34,7 @@ class Telephone {
         this.tariff = Math.round((0.1 + random.nextDouble() * 0.9) * 10.0) / 10.0
     }
 
-    /**
-     * Преобразует строку в число типа `Long`, извлекая только цифры.
-     *
-     * @param stri Входная строка, содержащая цифры.
-     * @return Число типа `Long`, содержащее только цифры из строки.
-     */
+
     fun str_to_long(stri: String): Long {
         var out_nub: Long = 0
         for (ch in stri.toCharArray()) {
@@ -119,12 +49,6 @@ class Telephone {
         return out_nub
     }
 
-    /**
-     * Конструктор класса `Telephone`, который инициализирует телефон с брендом и номером, представленным строкой.
-     *
-     * @param brand     Название бренда телефона.
-     * @param my_number Номер телефона в виде строки.
-     */
     constructor(brand: String, my_number: String) {
         val random = Random()
         this.brand = brand
@@ -134,15 +58,6 @@ class Telephone {
         this.tariff = Math.round((0.1 + random.nextDouble() * 0.9) * 10.0) / 10.0
     }
 
-    /**
-     * Конструктор класса `Telephone`, который инициализирует телефон с заданными параметрами.
-     *
-     * @param brand              Название бренда телефона.
-     * @param my_number          Номер телефона в виде строки.
-     * @param remembered_numbers Список запомненных номеров.
-     * @param count_calls        Количество вызовов.
-     * @param tariff             Тариф за минуту разговора.
-     */
     constructor(
         brand: String,
         my_number: String,
@@ -157,11 +72,6 @@ class Telephone {
         this.tariff = tariff
     }
 
-    /**
-     * Совершает звонок на другой телефон и обновляет список запомненных номеров.
-     *
-     * @param telephoneToCall Телефон, на который совершается вызов.
-     */
     fun toCall(telephoneToCall: Telephone) {
         println(this.brand + " звонит на номер " + telephoneToCall.my_number)
 
@@ -178,13 +88,16 @@ class Telephone {
             System.err.println("Произошла непредвиденная ошибка: " + e.message)
         }
 
-        this.number_to = telephoneToCall.my_number
-        count_calls++
+        this.number_to = telephoneToCall.getMy_number()
+        this.count_calls++
     }
 
+    fun getMy_number(): Long? {
+        return my_number
+    }
 
     fun toAnswer(telephoneToAnswer: Telephone, duration: Int) {
-        if (telephoneToAnswer.number_to === this.my_number) {
+        if (telephoneToAnswer.number_to == this.my_number) {
             println(this.brand + " отвечает на вызов от номера " + telephoneToAnswer.my_number)
 
             if (!remembered_numbers.contains(telephoneToAnswer.my_number)) {

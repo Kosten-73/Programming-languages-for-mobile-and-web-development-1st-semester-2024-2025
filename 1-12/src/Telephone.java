@@ -136,6 +136,7 @@ public class Telephone {
      * @param duration          Продолжительность вызова в минутах.
      */
     public void toAnswer(Telephone telephoneToAnswer, int duration) {
+        System.out.println(telephoneToAnswer.number_to + " отвечает на номер " + this.my_number);
         if (telephoneToAnswer.number_to == this.my_number){
         System.out.println(this.brand + " отвечает на вызов от номера " + telephoneToAnswer.my_number);
 

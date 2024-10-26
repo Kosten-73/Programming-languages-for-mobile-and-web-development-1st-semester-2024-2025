@@ -177,18 +177,12 @@ object Main {
                 }
 
                 2 -> telephones[parts[1].toInt()].toCall(telephones[parts[2].toInt()])
-                3 -> telephones[parts[1].toInt()].toAnswer(
-                    telephones[parts[2].toInt()],
-                    parts[3].toInt()
-                ) // iphone 15 отвечает, вызов длится 5 минут
+                3 -> telephones[parts[1].toInt()].toAnswer(telephones[parts[2].toInt()], parts[3].toInt()) // iphone 15 отвечает, вызов длится 5 минут
                 4 -> println(telephones[telephones.size - 1].toString())
-                5 -> {
-                    // Выход из программы
-                    println("Выход из программы.")
+                5 -> {println("Выход из программы.")
                     scanner.close()
                     return
                 }
-
                 else -> println("Неверная команда. Попробуйте снова.")
             }
         }
